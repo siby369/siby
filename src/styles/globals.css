@@ -40,6 +40,9 @@
   --color-selection: var(--selection);
   --color-selection-foreground: var(--selection-foreground);
 
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-pixel-square: var(--font-geist-pixel-square);
 }
 
 @utility no-scrollbar {
