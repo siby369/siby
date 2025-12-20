@@ -83,16 +83,16 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "https://assets.Siby.com/images/favicon.ico",
+        url: "https://siby369.github.io/favicon.ico",
         sizes: "any",
       },
       {
-        url: "https://assets.Siby.com/images/favicon.svg",
+        url: "https://siby369.github.io/favicon.svg",
         type: "image/svg+xml",
       },
     ],
     apple: {
-      url: "https://assets.Siby.com/images/apple-touch-icon.png",
+      url: "https://siby369.github.io/apple-touch-icon.png",
       type: "image/png",
       sizes: "180x180",
     },
@@ -139,7 +139,7 @@ export default function RootLayout({
         />
       </head>
 
-      <body>
+      <body suppressHydrationWarning>
         <Providers>
           <NuqsAdapter>
             <ConsentManager>
