@@ -1,6 +1,6 @@
-import "@siby369/react-wheel-picker/style.css"
+import "@ncdai/react-wheel-picker/style.css"
 
-import * as WheelPickerPrimitive from "@siby369/react-wheel-picker"
+import * as WheelPickerPrimitive from "@ncdai/react-wheel-picker"
 import type { ComponentProps } from "react"
 
 import { cn } from "@/lib/utils"
