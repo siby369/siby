@@ -7,6 +7,7 @@ export const CERTIFICATIONS: Certification[] = [
     issuerIconName: "coursera",
     issueDate: "2024-01-01",
     credentialURL: "https://coursera.org/share/ea32f2a9a04d5c6b45cbaaf724745b1f",
+    credentialID: "ea32f2a9a04d5c6b45cbaaf724745b1f",
   },
   {
     title: "Py for Data Science, AI & Development",
@@ -14,6 +15,7 @@ export const CERTIFICATIONS: Certification[] = [
     issuerIconName: "coursera",
     issueDate: "2024-01-01",
     credentialURL: "https://coursera.org/share/520ba7f6d424ac999ed6bf26e10d1745",
+    credentialID: "520ba7f6d424ac999ed6bf26e10d1745",
   },
   {
     title: "Database Management System (RDBMS)",
@@ -21,6 +23,7 @@ export const CERTIFICATIONS: Certification[] = [
     issuerIconName: "udemy",
     issueDate: "2025-01-01",
     credentialURL: "https://www.udemy.com/certificate/UC-f71e538a-607d-435e-bca2-45c9efed3619/",
+    credentialID: "UC-f71e538a-607d-435e-bca2-45c9efed3619",
   },
   {
     title: "Web Development",
@@ -28,6 +31,7 @@ export const CERTIFICATIONS: Certification[] = [
     issuerIconName: "ibm",
     issueDate: "2025-01-01",
     credentialURL: "https://www.credly.com/badges/d9949ef6-9d26-4084-9d33-9b470cf77604",
+    credentialID: "d9949ef6-9d26-4084-9d33-9b470cf77604",
   },
   {
     title: "Data Analysis with Python",
@@ -35,5 +39,6 @@ export const CERTIFICATIONS: Certification[] = [
     issuerIconName: "coursera",
     issueDate: "2025-01-01",
     credentialURL: "#",
+    credentialID: "N/A",
   },
 ]
