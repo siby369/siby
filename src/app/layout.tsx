@@ -8,6 +8,7 @@ import type { WebSite, WithContext } from "schema-dts"
 import { ConsentManagerClient } from "@/components/consent-manager-client"
 import { DuckFollower } from "@/components/duck-follower"
 import { Providers } from "@/components/providers"
+import { SafeHydrate } from "@/components/safe-hydrate"
 import { META_THEME_COLORS, SITE_INFO } from "@/config/site"
 import { USER } from "@/features/portfolio/data/user"
 import { fontMono, fontPixelSquare, fontSans } from "@/lib/fonts"
@@ -142,10 +143,12 @@ export default function RootLayout({
       <body suppressHydrationWarning>
         <Providers>
           <NuqsAdapter>
-            <ConsentManager>
-              <ConsentManagerClient>{children}</ConsentManagerClient>
-              <DuckFollower />
-            </ConsentManager>
+            <SafeHydrate>
+              <ConsentManager>
+                <ConsentManagerClient>{children}</ConsentManagerClient>
+                <DuckFollower />
+              </ConsentManager>
+            </SafeHydrate>
           </NuqsAdapter>
         </Providers>
       </body>

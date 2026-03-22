@@ -18,6 +18,7 @@ import {
 import { registryConfig } from "@/config/registry"
 import { UTM_PARAMS } from "@/config/site"
 import { getDocsByCategory } from "@/features/doc/data/documents"
+import type { Doc } from "@/features/doc/types/document"
 import { cn } from "@/lib/utils"
 import { addQueryParams } from "@/utils/url"
 
@@ -61,18 +62,6 @@ export default function Page() {
           </a>{" "}
           for shadcn/ui.
         </p>
-
-        {/* <div className="flex items-center gap-1.5 *:data-[slot=tag]:gap-1.5">
-          <Tag className="font-sans font-medium">
-            <Icons.react />
-            React 19
-          </Tag>
-
-          <Tag className="font-sans font-medium">
-            <Icons.tailwindcss />
-            Tailwind CSS v4
-          </Tag>
-        </div> */}
       </div>
 
       <div className="screen-line-before screen-line-after relative">
@@ -139,7 +128,7 @@ export default function Page() {
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
           {posts
             .slice()
-            .sort((a, b) =>
+            .sort((a: Doc, b: Doc) =>
               a.metadata.title.localeCompare(b.metadata.title, "en", {
                 sensitivity: "base",
               })

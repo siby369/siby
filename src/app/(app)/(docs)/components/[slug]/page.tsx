@@ -27,7 +27,7 @@ import { cn } from "@/lib/utils"
 
 export async function generateStaticParams() {
   const docs = getDocsByCategory("components")
-  return docs.map((doc) => ({ slug: doc.slug }))
+  return docs.map((doc: Doc) => ({ slug: doc.slug }))
 }
 
 export async function generateMetadata({
@@ -115,7 +115,7 @@ export default async function Page({
 
   const allDocs = getDocsByCategory("components")
     .slice()
-    .sort((a, b) =>
+    .sort((a: Doc, b: Doc) =>
       a.metadata.title.localeCompare(b.metadata.title, "en", {
         sensitivity: "base",
       })
