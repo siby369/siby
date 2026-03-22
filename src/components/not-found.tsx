@@ -19,7 +19,7 @@ export function NotFound({ className }: { className?: string }) {
         fill="none"
       >
         <path
-          d="M65 193v64h128v-64H65Zm0 0H1V65h64m0 128V65m384 0H321v128h128m0-128V1H257v256h192v-64m0-128v128m0-128h64v128h-64M65 65h128V1H65v64Z"
+          d="M1 1h64v256H1z M65 1h160v64H65z M65 193h160v64H65z M257 1h64v256H257z M321 1h128v64H321z M321 97h128v64H321z M321 193h128v64H321z M449 33h64v64H449z M449 161h64v64H449z"
           stroke="currentColor"
           strokeWidth="1"
           vectorEffect="non-scaling-stroke"
