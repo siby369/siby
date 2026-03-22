@@ -65,73 +65,6 @@ const components: MDXRemoteProps["components"] = {
   tr: TableRow,
   th: TableHead,
   td: TableCell,
-  // figure({ className, ...props }: React.ComponentProps<"figure">) {
-  //   const hasPrettyCode = "data-rehype-pretty-code-figure" in props
-
-  //   return (
-  //     <figure
-  //       className={cn(hasPrettyCode && "not-prose", className)}
-  //       {...props}
-  //     />
-  //   )
-  // },
-  // figcaption: ({ children, ...props }: React.ComponentProps<"figcaption">) => {
-  //   const iconExtension =
-  //     "data-language" in props && typeof props["data-language"] === "string"
-  //       ? getIconForLanguageExtension(props["data-language"])
-  //       : null
-
-  //   const hasCodeTitle = "data-rehype-pretty-code-title" in props
-
-  //   return (
-  //     <figcaption {...props}>
-  //       {iconExtension}
-  //       {hasCodeTitle ? <p className="truncate">{children}</p> : children}
-  //     </figcaption>
-  //   )
-  // },
-  // pre({
-  //   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  //   __withMeta__,
-  //   __rawString__,
-
-  //   __pnpm__,
-  //   __yarn__,
-  //   __npm__,
-  //   __bun__,
-
-  //   ...props
-  // }: React.ComponentProps<"pre"> & {
-  //   __withMeta__?: boolean
-  //   __rawString__?: string
-  // } & NpmCommands) {
-  //   const isNpmCommand = __pnpm__ && __yarn__ && __npm__ && __bun__
-
-  //   if (isNpmCommand) {
-  //     return (
-  //       <CodeBlockCommand
-  //         __pnpm__={__pnpm__}
-  //         __yarn__={__yarn__}
-  //         __npm__={__npm__}
-  //         __bun__={__bun__}
-  //       />
-  //     )
-  //   }
-
-  //   return (
-  //     <>
-  //       <pre {...props} />
-
-  //       {__rawString__ && (
-  //         <CopyButton
-  //           className="absolute top-2 right-2 z-10"
-  //           text={__rawString__}
-  //           event="copy_code_block"
-  //         />
-  //       )}
-  //     </>
-  //   )
-  // },
   ...mdxCodeBlockComponents,
   code: Code,
   ComponentPreview,
@@ -184,53 +117,6 @@ const options: MDXRemoteProps["options"] = {
       ],
       rehypeSlug,
       rehypeComponent,
-      // () => (tree) => {
-      //   visit(tree, (node) => {
-      //     if (node?.type === "element" && node?.tagName === "pre") {
-      //       const [codeEl] = node.children
-      //       if (codeEl.tagName !== "code") {
-      //         return
-      //       }
-
-      //       node.__rawString__ = codeEl.children?.[0].value
-      //     }
-      //   })
-      // },
-      // [
-      //   rehypePrettyCode,
-      //   {
-      //     theme: {
-      //       dark: "github-dark",
-      //       light: "github-light",
-      //     },
-      //     keepBackground: false,
-      //     onVisitLine(node: LineElement) {
-      //       // Prevent lines from collapsing in `display: grid` mode, and allow empty
-      //       // lines to be copy/pasted
-      //       if (node.children.length === 0) {
-      //         node.children = [{ type: "text", value: " " }]
-      //       }
-      //     },
-      //   },
-      // ],
-      // () => (tree) => {
-      //   visit(tree, (node) => {
-      //     if (node?.type === "element" && node?.tagName === "figure") {
-      //       if (!("data-rehype-pretty-code-figure" in node.properties)) {
-      //         return
-      //       }
-
-      //       const preElement = node.children.at(-1)
-      //       if (preElement.tagName !== "pre") {
-      //         return
-      //       }
-
-      //       preElement.properties["__withMeta__"] =
-      //         node.children.at(0).tagName === "figcaption"
-      //       preElement.properties["__rawString__"] = node.__rawString__
-      //     }
-      //   })
-      // },
       rehypeCodeRawString,
       rehypeHighlightCode,
       rehypeHighlightCodeRawString,

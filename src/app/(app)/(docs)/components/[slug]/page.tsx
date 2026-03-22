@@ -16,9 +16,6 @@ import { Button } from "@/components/ui/button"
 import { Kbd } from "@/components/ui/kbd"
 import { Prose } from "@/components/ui/typography"
 import { SITE_INFO } from "@/config/site"
-import { PostKeyboardShortcuts } from "@/features/blog/components/post-keyboard-shortcuts"
-import { LLMCopyButtonWithViewOptions } from "@/features/blog/components/post-page-actions"
-import { PostShareMenu } from "@/features/blog/components/post-share-menu"
 import {
   findNeighbour,
   getDocBySlug,
@@ -134,12 +131,6 @@ export default async function Page({
         }}
       />
 
-      <PostKeyboardShortcuts
-        basePath="/components"
-        previous={previous}
-        next={next}
-      />
-
       <div className="flex items-center justify-between p-2 pl-4">
         <Button
           className="h-7 gap-2 rounded-lg px-0 font-mono text-muted-foreground transition-[color] hover:text-foreground"
@@ -153,16 +144,6 @@ export default async function Page({
         </Button>
 
         <div className="flex items-center gap-2">
-          <LLMCopyButtonWithViewOptions
-            markdownUrl={`/components/${doc.slug}.mdx`}
-            isComponent
-          />
-
-          <PostShareMenu
-            title={doc.metadata.title}
-            url={`/components/${doc.slug}`}
-          />
-
           {previous && (
             <Tooltip>
               <TooltipTrigger

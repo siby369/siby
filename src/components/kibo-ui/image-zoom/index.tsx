@@ -1,11 +1,15 @@
 "use client"
 
-import Zoom, {
+import * as ZoomPrimitive from "react-medium-image-zoom"
+import {
   type ControlledProps,
   type UncontrolledProps,
 } from "react-medium-image-zoom"
 
 import { cn } from "@/lib/utils"
+
+// @ts-ignore
+const Zoom = ZoomPrimitive.default || ZoomPrimitive
 
 export type ImageZoomProps = UncontrolledProps & {
   isZoomed?: ControlledProps["isZoomed"]

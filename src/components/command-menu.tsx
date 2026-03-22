@@ -208,13 +208,6 @@ export function CommandMenu({ posts }: { posts: DocPreview[] }) {
       })
 
       setTheme(theme)
-
-      // if (!document.startViewTransition) {
-      //   setTheme(theme);
-      //   return;
-      // }
-
-      // document.startViewTransition(() => setTheme(theme));
     },
     [playClick, setTheme]
   )
@@ -231,30 +224,12 @@ export function CommandMenu({ posts }: { posts: DocPreview[] }) {
     })
   }, [setIsDuckFollowerVisible])
 
-  const { componentLinks, blogLinks } = useMemo(
-    () => ({
-      componentLinks: posts
-        .filter((post) => post.category === "components")
-        .sort((a, b) =>
-          a.title.localeCompare(b.title, "en", {
-            sensitivity: "base",
-          })
-        )
-        .map(postToCommandLinkItem),
-      blogLinks: posts
-        .filter((post) => post.category !== "components")
-        .map(postToCommandLinkItem),
-    }),
-    [posts]
-  )
-
   return (
     <>
       <Button
         variant="secondary"
         className={cn(
           "h-8 gap-1.5 rounded-full border border-input bg-white px-2.5 text-muted-foreground shadow-xs select-none hover:bg-white dark:bg-input/30 dark:hover:bg-input/30"
-          // "relative before:pointer-events-none before:absolute before:inset-0 before:rounded-full before:shadow-[0_1px_--theme(--color-black/4%)] dark:before:shadow-[0_-1px_--theme(--color-white/6%)]"
         )}
         onClick={() => {
           setOpen(true)
@@ -302,20 +277,6 @@ export function CommandMenu({ posts }: { posts: DocPreview[] }) {
           />
 
           <CommandLinkGroup
-            heading="UI"
-            links={componentLinks}
-            fallbackIcon={Icons.react}
-            onLinkSelect={handleOpenLink}
-          />
-
-          <CommandLinkGroup
-            heading="Blog"
-            links={blogLinks}
-            fallbackIcon={TextIcon}
-            onLinkSelect={handleOpenLink}
-          />
-
-          <CommandLinkGroup
             heading="Social Links"
             links={SOCIAL_LINK_ITEMS}
             onLinkSelect={handleOpenLink}
@@ -344,13 +305,6 @@ export function CommandMenu({ posts }: { posts: DocPreview[] }) {
             >
               <TypeIcon />
               Copy Logotype as SVG
-            </CommandItem>
-
-            <CommandItem
-              onSelect={() => handleOpenLink("/blog/cb-brand")}
-            >
-              <TriangleDashedIcon />
-              Brand Guidelines
             </CommandItem>
 
             <CommandItem asChild>
@@ -547,19 +501,4 @@ function CommandMenuFooter() {
       </div>
     </>
   )
-}
-
-function postToCommandLinkItem(post: DocPreview): CommandLinkItem {
-  const isComponent = post.category === "components"
-
-  const IconComponent = isComponent
-    ? (props: LucideProps) => <ComponentIcon {...props} variant={post.slug} />
-    : undefined
-
-  return {
-    title: post.title,
-    href: isComponent ? `/components/${post.slug}` : `/blog/${post.slug}`,
-    keywords: isComponent ? ["component"] : undefined,
-    icon: IconComponent,
-  }
 }
