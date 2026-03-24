@@ -15,7 +15,7 @@ export const USER: User = {
   ],
   address: "Coimbatore, Tamilnadu, India",
   phoneNumber: "KzkxNjM4NTI1NjQ2NA==", // +916385256464 base64 encoded
-  email: "c2lieXJhajM2OUBnbWFpbC5jb20=", // sibyraj369@gmail.com base64 encoded
+  email: "aWFtc2lieS5kZXZAZ21haWwuY29t", // iamsiby.dev@gmail.com base64 encoded
   website: "https://github.com/siby369",
   jobTitle: "Computer Science Student",
   jobs: [
