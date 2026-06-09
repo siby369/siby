@@ -102,7 +102,7 @@ function parseFontFamily(value: string): string | null {
   const name = match ? match[1].trim() : trimmed.split(",")[0]?.trim()
   if (!name) return null
 
-  if (GENERIC_FONTS.includes(name.toLowerCase())) return null
+  if ((GENERIC_FONTS as readonly string[]).includes(name.toLowerCase())) return null
 
   return name
 }

@@ -23,20 +23,30 @@ export const motionIconProps: HTMLMotionProps<"span"> = {
   transition: { duration: 0.15, ease: "easeOut" },
 }
 
-export function CopyStateIcon({ state }: { state: CopyState }) {
+export function CopyStateIcon({
+  state,
+  idleIcon = <CopyIcon />,
+  doneIcon = <CheckIcon strokeWidth={3} />,
+  errorIcon = <CircleXIcon />,
+}: {
+  state: CopyState
+  idleIcon?: React.ReactNode
+  doneIcon?: React.ReactNode
+  errorIcon?: React.ReactNode
+}) {
   return (
     <AnimatePresence mode="popLayout" initial={false}>
       {state === "idle" ? (
         <motion.span key="idle" {...motionIconProps}>
-          <CopyIcon />
+          {idleIcon}
         </motion.span>
       ) : state === "done" ? (
         <motion.span key="done" {...motionIconProps}>
-          <CheckIcon strokeWidth={3} />
+          {doneIcon}
         </motion.span>
       ) : state === "error" ? (
         <motion.span key="error" {...motionIconProps}>
-          <CircleXIcon />
+          {errorIcon}
         </motion.span>
       ) : null}
     </AnimatePresence>
