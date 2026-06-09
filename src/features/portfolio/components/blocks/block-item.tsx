@@ -1,20 +1,26 @@
 "use client"
 
 import {
-  ExternalLinkIcon,
   LaptopIcon,
+  Maximize2Icon,
   MonitorIcon,
   RotateCcwIcon,
   SmartphoneIcon,
   TabletIcon,
 } from "lucide-react"
-import React, { useMemo, useState, useRef } from "react"
+import React, { useMemo, useState } from "react"
 
+import {
+  Tabs,
+  TabsContent,
+  TabsIndicator,
+  TabsList,
+  TabsTrigger,
+} from "@/components/base/ui/tabs"
 import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/base/ui/tooltip"
 import { cn } from "@/lib/utils"
 import { Index } from "@/__registry__/index"
+import { OpenInV0Button } from "@/components/v0-open-button"
 
 export function BlockItem({
   name,
@@ -28,138 +34,131 @@ export function BlockItem({
   link?: string
 }) {
   const [replay, setReplay] = useState(0)
-  const [device, setDevice] = useState<string>("desktop")
-  const iframeRef = useRef<HTMLIFrameElement>(null)
 
   const Preview = useMemo(() => {
     const Component = Index[name]?.component
-    if (Component) return <Component />
-    
-    if (link && link !== "#") {
-      return (
-        <iframe
-          ref={iframeRef}
-          src={link}
-          className="h-full w-full border-none"
-          title={title}
-        />
-      )
-    }
-
-    return (
-      <div className="flex flex-col items-center justify-center text-center p-12 gap-4">
-        <div className="size-16 rounded-2xl bg-muted flex items-center justify-center border border-dashed">
-          <MonitorIcon className="size-8 text-muted-foreground" />
-        </div>
-        <div>
-          <h3 className="font-medium text-lg">No Preview Available</h3>
-          <p className="text-muted-foreground text-sm max-w-xs">
-            {description || "This project doesn't have a live preview yet."}
-          </p>
-        </div>
+    if (!Component) return (
+      <div className="flex flex-col items-center gap-2 text-muted-foreground">
+        <p className="text-sm text-center">Preview not available for this project yet.</p>
+        {link && (
+          <Button variant="link" asChild>
+            <a href={link} target="_blank" rel="noopener noreferrer">Visit Project Website</a>
+          </Button>
+        )}
       </div>
     )
-  }, [name, link, title, description])
+    return <Component />
+  }, [name, link])
 
-  const handleRefresh = () => {
-    setReplay((v) => v + 1)
-    if (iframeRef.current && link) {
-      iframeRef.current.src = link
-    }
-  }
+  const sourceCode = useMemo(() => {
+    return `import React from "react"
+import { cn } from "@/lib/utils"
 
-  const deviceWidths: Record<string, string> = {
-    mobile: "max-w-[375px]",
-    tablet: "max-w-[768px]",
-    desktop: "max-w-full"
-  }
+export default function ${name.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('')}() {        
+  return (
+    <div className="flex items-center justify-center p-8">
+      <h1 className="text-2xl font-bold">${title}</h1>
+      <p>${description || ""}</p>
+    </div>
+  )
+}`
+  }, [name, title, description])
 
   return (
-    <div id={name} className="flex min-w-0 scroll-mt-14 flex-col-reverse items-stretch gap-2 p-2 md:flex-col lg:pr-0">
-      <div className="flex flex-col gap-2">
-        <div className="flex w-full items-center gap-2 px-2 max-lg:hidden">
-          <div className="flex h-8 items-center gap-2 rounded-lg p-0.5 bg-zinc-100 dark:bg-zinc-900 px-3">
-            <span className="text-xs font-medium">Preview</span>
-          </div>
-          
-          <Separator orientation="vertical" className="mx-2 h-4 self-center" />
-          
-          <a href={`#${name}`} className="line-clamp-1 text-sm font-medium underline-offset-4 hover:underline">
-            {title}
-          </a>
-
-          <div className="ml-auto flex items-center gap-2">
-            <div className="flex h-8 items-center gap-1 rounded-lg border p-1">
-              <Button 
-                variant="ghost" 
-                size="icon-xs" 
-                className={cn("h-6 w-6", device === "mobile" && "bg-background shadow-xs")}
-                onClick={() => setDevice("mobile")}
+    <div className="group/block relative flex flex-col gap-4 py-8">
+      <Tabs defaultValue="preview" className="flex flex-col gap-4">
+        <div className="flex h-10 items-center justify-between gap-4 px-4">
+          <div className="flex items-center gap-4">
+            <TabsList className="h-8 p-0.5">
+              <TabsTrigger
+                value="preview"
+                className="h-7 rounded-md px-3 text-xs"
               >
+                Preview
+              </TabsTrigger>
+              <TabsTrigger value="code" className="h-7 rounded-md px-3 text-xs">
+                Code
+              </TabsTrigger>
+              <TabsIndicator />
+            </TabsList>
+
+            <span className="hidden truncate text-sm font-medium text-muted-foreground lg:inline-block">        
+              {title}
+            </span>
+          </div>
+
+          <div className="flex flex-1 items-center justify-end gap-2 overflow-hidden">
+            <div className="hidden items-center gap-1 rounded-lg border bg-muted/50 p-1 xl:flex">
+              <div className="flex items-center gap-0.5 border-r pr-1 mr-1">
+                <div className="size-2 rounded-full bg-border" />
+                <div className="size-2 rounded-full bg-border" />
+                <div className="size-2 rounded-full bg-muted-foreground/40" />
+              </div>
+              <Button variant="ghost" size="icon-xs" className="h-6 w-6">
                 <SmartphoneIcon className="size-3.5" />
               </Button>
-              <Button 
-                variant="ghost" 
-                size="icon-xs" 
-                className={cn("h-6 w-6", device === "tablet" && "bg-background shadow-xs")}
-                onClick={() => setDevice("tablet")}
-              >
+              <Button variant="ghost" size="icon-xs" className="h-6 w-6">
                 <TabletIcon className="size-3.5" />
               </Button>
               <Button
                 variant="ghost"
                 size="icon-xs"
-                className={cn("h-6 w-6", device === "desktop" && "bg-background shadow-xs")}
-                onClick={() => setDevice("desktop")}
+                className="h-6 w-6 bg-background shadow-xs"
               >
                 <MonitorIcon className="size-3.5" />
               </Button>
+              <Button variant="ghost" size="icon-xs" className="h-6 w-6">
+                <LaptopIcon className="size-3.5" />
+              </Button>
             </div>
 
-            <Separator orientation="vertical" className="h-4" />
+            <div className="flex items-center gap-1 rounded-lg border bg-muted/50 p-1">
+              <Button variant="ghost" size="icon-xs" className="h-6 w-6">
+                <Maximize2Icon className="size-3.5" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon-xs"
+                className="h-6 w-6"
+                onClick={() => setReplay((v) => v + 1)}
+              >
+                <RotateCcwIcon className="size-3.5" />
+              </Button>
+            </div>
 
-            <Tooltip>
-              <TooltipTrigger
-                render={
-                  <Button variant="ghost" size="icon-xs" className="h-6 w-6" asChild>
-                    <a href={link} target="_blank" rel="noopener">
-                      <ExternalLinkIcon className="size-3.5" />
-                    </a>
-                  </Button>
-                }
-              />
-              <TooltipContent>Open in New Tab</TooltipContent>
-            </Tooltip>
+            <div className="hidden max-w-[240px] items-center gap-2 rounded-lg border bg-muted/50 px-3 py-1 font-mono text-xs sm:flex">
+              <span className="text-muted-foreground shrink-0">$</span>
+              <span className="truncate">npx shadcn add @siby369/{name}</span>
+            </div>
 
-            <Separator orientation="vertical" className="h-4" />
-
-            <Tooltip>
-              <TooltipTrigger
-                render={
-                  <Button variant="ghost" size="icon-xs" className="h-6 w-6" onClick={handleRefresh}>
-                    <RotateCcwIcon className="size-3.5" />
-                  </Button>
-                }
-              />
-              <TooltipContent>Refresh Preview</TooltipContent>
-            </Tooltip>
+            <OpenInV0Button url={`https://v0.dev/chat/b/new?template=https://siby.com/registry/components/${name}.json`} />
           </div>
         </div>
 
-        <div className="relative mt-0 min-h-[400px] overflow-hidden rounded-xl border bg-background flex justify-center">
-          <div
-            key={replay}
-            className={cn(
-              "flex h-[400px] w-full items-center justify-center transition-all duration-500 ease-in-out",
-              deviceWidths[device]
-            )}
+        <div className="px-4">
+          <TabsContent
+            value="preview"
+            className="relative mt-0 min-h-[450px] overflow-hidden rounded-xl border bg-background"
           >
-            <React.Suspense fallback={<div className="text-sm text-muted-foreground animate-pulse">Loading preview...</div>}>
-              {Preview}
-            </React.Suspense>
-          </div>
+            <div
+              key={replay}
+              className="flex h-full min-h-[450px] w-full items-center justify-center p-4"
+            >
+              <React.Suspense fallback={<div className="text-sm text-muted-foreground animate-pulse">Loading preview...</div>}>
+                {Preview}
+              </React.Suspense>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="code" className="mt-0 overflow-hidden rounded-xl border bg-zinc-950">
+            <div className="max-h-[600px] overflow-auto p-4">
+               <pre className="font-mono text-xs leading-relaxed text-zinc-400">
+                 <code>{sourceCode}</code>
+               </pre>
+            </div>
+          </TabsContent>
         </div>
-      </div>
+      </Tabs>
     </div>
-  )
+)
 }
