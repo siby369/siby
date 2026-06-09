@@ -1,12 +1,12 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "siby369",
-  "homepage": "https://siby369.github.io/components",
+  "homepage": "https://Siby.com/components",
   "items": [
     {
       "name": "utils",
       "title": "Utility Functions",
-      "author": "siby369 <dai@siby369.github.io>",
+      "author": "siby369 <dai@Siby.com>",
       "dependencies": [
         "clsx",
         "tailwind-merge"
@@ -22,7 +22,7 @@
     {
       "name": "haptic",
       "title": "Haptic Feedback",
-      "author": "siby369 <dai@siby369.github.io>",
+      "author": "siby369 <dai@Siby.com>",
       "description": "Trigger haptic feedback on mobile devices.",
       "files": [
         {
@@ -62,7 +62,7 @@
     {
       "name": "theme-switcher",
       "title": "Theme Switcher",
-      "author": "siby369 <dai@siby369.github.io>",
+      "author": "siby369 <dai@Siby.com>",
       "description": "Toggle between system, light, and dark themes in Next.js apps.",
       "dependencies": [
         "next-themes",
@@ -75,13 +75,13 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://siby369.github.io/components/theme-switcher",
+      "docs": "https://Siby.com/components/theme-switcher",
       "type": "registry:component"
     },
     {
       "name": "text-flip",
       "title": "Text Flip",
-      "author": "siby369 <dai@siby369.github.io>",
+      "author": "siby369 <dai@Siby.com>",
       "description": "Animated text that cycles through items with a smooth flip transition.",
       "dependencies": [
         "motion"
@@ -92,13 +92,13 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://siby369.github.io/components/text-flip",
+      "docs": "https://Siby.com/components/text-flip",
       "type": "registry:component"
     },
     {
       "name": "apple-hello-effect",
       "title": "Apple Hello Effect",
-      "author": "siby369 <dai@siby369.github.io>",
+      "author": "siby369 <dai@Siby.com>",
       "description": "SVG writing animation inspired by Apple's Hello screen.",
       "dependencies": [
         "motion"
@@ -109,13 +109,13 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://siby369.github.io/components/apple-hello-effect",
+      "docs": "https://Siby.com/components/apple-hello-effect",
       "type": "registry:component"
     },
     {
       "name": "wheel-picker",
       "title": "Wheel Picker",
-      "author": "siby369 <dai@siby369.github.io>",
+      "author": "siby369 <dai@Siby.com>",
       "description": "iOS-like wheel picker for React with smooth inertia scrolling and infinite loop support.",
       "dependencies": [
         "@siby369/react-wheel-picker"
@@ -126,13 +126,13 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://siby369.github.io/components/react-wheel-picker",
+      "docs": "https://Siby.com/components/react-wheel-picker",
       "type": "registry:component"
     },
     {
       "name": "typography",
       "title": "Typography",
-      "author": "siby369 <dai@siby369.github.io>",
+      "author": "siby369 <dai@Siby.com>",
       "description": "Custom prose styles for headings, links, inline code, and emphasis.",
       "devDependencies": [
         "@tailwindcss/typography"
@@ -152,7 +152,7 @@
     {
       "name": "work-experience",
       "title": "Work Experience",
-      "author": "siby369 <dai@siby369.github.io>",
+      "author": "siby369 <dai@Siby.com>",
       "description": "Display work experiences with role details, company logos, and durations.",
       "dependencies": [
         "react-markdown",
@@ -164,7 +164,7 @@
       "registryDependencies": [
         "collapsible",
         "separator",
-        "https://siby369.github.io/r/typography.json"
+        "https://Siby.com/r/typography.json"
       ],
       "files": [
         {
@@ -172,13 +172,13 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://siby369.github.io/components/work-experience",
+      "docs": "https://Siby.com/components/work-experience",
       "type": "registry:component"
     },
     {
       "name": "shimmering-text",
       "title": "Shimmering Text",
-      "author": "siby369 <dai@siby369.github.io>",
+      "author": "siby369 <dai@Siby.com>",
       "description": "Smooth, light-sweeping shimmer animation for text.",
       "dependencies": [
         "motion"
@@ -194,13 +194,13 @@
     {
       "name": "slide-to-unlock",
       "title": "Slide to Unlock",
-      "author": "siby369 <dai@siby369.github.io>",
+      "author": "siby369 <dai@Siby.com>",
       "description": "Interactive slider inspired by the classic iPhone 'slide to unlock' gesture.",
       "dependencies": [
         "motion"
       ],
       "registryDependencies": [
-        "https://siby369.github.io/r/shimmering-text.json"
+        "https://Siby.com/r/shimmering-text.json"
       ],
       "files": [
         {
@@ -208,26 +208,26 @@
           "type": "registry:component"
         }
       ],
-      "docs": "https://siby369.github.io/components/slide-to-unlock",
+      "docs": "https://Siby.com/components/slide-to-unlock",
       "type": "registry:component"
     },
     {
       "name": "testimonials-marquee",
       "title": "Testimonials Marquee",
-      "author": "siby369 <dai@siby369.github.io>",
+      "author": "siby369 <dai@Siby.com>",
       "description": "Scrolling marquee to showcase user testimonials.",
       "registryDependencies": [
         "@kibo-ui/marquee",
-        "https://siby369.github.io/r/testimonial.json"
+        "https://Siby.com/r/testimonial.json"
       ],
-      "docs": "https://siby369.github.io/components/testimonials-marquee",
+      "docs": "https://Siby.com/components/testimonials-marquee",
       "type": "registry:component",
       "files": []
     },
     {
       "name": "testimonial",
       "title": "Testimonial",
-      "author": "siby369 <dai@siby369.github.io>",
+      "author": "siby369 <dai@Siby.com>",
       "description": "Display user feedback with author info, avatar, and verified badge.",
       "files": [
         {
@@ -240,7 +240,7 @@
     {
       "name": "github-stars",
       "title": "GitHub Stars",
-      "author": "siby369 <dai@siby369.github.io>",
+      "author": "siby369 <dai@Siby.com>",
       "description": "Display GitHub repo star count with formatted numbers and full-count tooltip.",
       "registryDependencies": [
         "button",
@@ -257,7 +257,7 @@
     {
       "name": "scroll-fade-effect",
       "title": "Scroll Fade Effect",
-      "author": "siby369 <dai@siby369.github.io>",
+      "author": "siby369 <dai@Siby.com>",
       "description": "Fade content edges as you scroll, for both vertical and horizontal layouts.",
       "files": [
         {
@@ -344,7 +344,7 @@
     {
       "name": "consent-manager",
       "title": "Consent Manager",
-      "author": "siby369 <dai@siby369.github.io>",
+      "author": "siby369 <dai@Siby.com>",
       "description": "Cookie and tracking consent banner for Next.js, built on c15t.",
       "dependencies": [
         "@c15t/nextjs"
@@ -363,7 +363,7 @@
     {
       "name": "copy-button",
       "title": "Copy Button",
-      "author": "siby369 <dai@siby369.github.io>",
+      "author": "siby369 <dai@Siby.com>",
       "description": "Copy text to clipboard with visual feedback and animation.",
       "dependencies": [
         "lucide-react",
@@ -387,7 +387,7 @@
     {
       "name": "code-block-command",
       "title": "Code Block Command",
-      "author": "siby369 <dai@siby369.github.io>",
+      "author": "siby369 <dai@Siby.com>",
       "description": "Display install commands with package manager switcher and copy button.",
       "dependencies": [
         "@base-ui/react",
@@ -396,7 +396,7 @@
         "jotai"
       ],
       "registryDependencies": [
-        "https://siby369.github.io/r/copy-button.json"
+        "https://Siby.com/r/copy-button.json"
       ],
       "files": [
         {
@@ -429,6 +429,157 @@
         }
       },
       "type": "registry:component"
+    },
+    {
+      "name": "testimonial-spotlight",
+      "title": "Testimonial Spotlight",
+      "author": "siby369 <siby@siby.com>",
+      "description": "Testimonial card with spotlight effect on hover.",
+      "registryDependencies": [
+        "https://Siby.com/r/testimonial.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/components/testimonial-spotlight/testimonial-spotlight.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "login-01",
+      "title": "Login 01",
+      "description": "A simple login form.",
+      "registryDependencies": [
+        "button",
+        "card",
+        "input",
+        "label",
+        "field"
+      ],
+      "files": [
+        {
+          "path": "src/registry/blocks/login-01/page.tsx",
+          "type": "registry:page",
+          "target": "app/login/page.tsx"
+        },
+        {
+          "path": "src/registry/blocks/login-01/components/login-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "application",
+        "login"
+      ],
+      "type": "registry:block"
+    },
+    {
+      "name": "hero-01",
+      "title": "Hero 01",
+      "description": "A hero section with a golden spiral background.",
+      "registryDependencies": [
+        "button",
+        "https://Siby.com/r/style.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/blocks/hero-01/hero-01.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/blocks/hero-01/components/hero-01-icons.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "previewClassName": "flex min-h-svh flex-col items-center pt-8"
+      },
+      "categories": [
+        "marketing",
+        "hero"
+      ],
+      "type": "registry:block"
+    },
+    {
+      "name": "blog-01",
+      "title": "Blog 01",
+      "description": "A blog section with a grid layout.",
+      "dependencies": [
+        "date-fns"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/registry/blocks/blog-01/blog-01.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/blocks/blog-01/components/article-item.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "content",
+        "blog"
+      ],
+      "type": "registry:block"
+    },
+    {
+      "name": "blog-02",
+      "title": "Blog 02",
+      "description": "A blog section with a lined grid layout.",
+      "dependencies": [
+        "date-fns"
+      ],
+      "registryDependencies": [
+        "button",
+        "https://Siby.com/r/style.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/blocks/blog-02/blog-02.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/blocks/blog-02/components/article-item.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": [
+        "content",
+        "blog"
+      ],
+      "type": "registry:block"
+    },
+    {
+      "name": "testimonials-01",
+      "title": "Testimonials 01",
+      "description": "A testimonials section with dual marquees.",
+      "registryDependencies": [
+        "https://www.kibo-ui.com/r/marquee.json",
+        "https://Siby.com/r/testimonial-spotlight.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/blocks/testimonials-01/testimonials-01.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/blocks/testimonials-01/components/testimonial-list.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "previewClassName": "container mx-auto flex min-h-svh flex-col justify-center"
+      },
+      "categories": [
+        "marketing",
+        "testimonials"
+      ],
+      "type": "registry:block"
     }
   ]
 }

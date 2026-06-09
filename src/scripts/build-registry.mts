@@ -4,6 +4,8 @@ import path from "node:path"
 import { rimraf } from "rimraf"
 import { type Registry, registrySchema } from "shadcn/schema"
 
+// import { getAllBlocks } from "../lib/blocks"
+
 const REGISTRY_PATH = path.join(process.cwd(), "src/__registry__")
 const PUBLIC_REGISTRY_PATH = path.join(process.cwd(), "public/r")
 
@@ -26,7 +28,10 @@ export const Index: Record<string, any> = {`
       continue
     }
 
-    const componentPath = `@/registry/${item.files[0].path}`
+    const componentFilePath = item.files[0].path
+    const componentPath = componentFilePath.startsWith("src/")
+      ? componentFilePath.replace("src/", "@/")
+      : `@/registry/${componentFilePath}`
 
     index += `
   "${item.name}": {
@@ -34,21 +39,22 @@ export const Index: Record<string, any> = {`
     description: "${item.description ?? ""}",
     type: "${item.type}",
     files: [${item.files.map((file) => {
-      const filePath = `src/registry/${file.path}`
+      const filePath = file.path.startsWith("src/")
+        ? file.path
+        : `src/registry/${file.path}`
       return `{
       path: "${filePath}",
       type: "${file.type}",
+      target: "${file.target ?? ""}",
     }`
-    })}],${
-      item.type === "registry:example"
-        ? `
+    })}],
     component: React.lazy(async () => {
       const mod = await import("${componentPath}")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
-    }),`
-        : ""
-    }
+    }),
+    categories: ${JSON.stringify(item.categories)},
+    meta: ${JSON.stringify(item.meta)},
   },`
   }
 
@@ -118,6 +124,8 @@ try {
   }
 
   await buildRegistry(result.data)
+
+  // await buildBlocksIndex()
 
   console.log("✅ Done!")
 } catch (error) {
