@@ -23,7 +23,7 @@ export type ShimmeringTextProps = Omit<
 }
 
 export function ShimmeringText({
-  text,
+  text = "",
   duration = 1,
   isStopped = false,
   className,
@@ -37,8 +37,8 @@ export function ShimmeringText({
           duration,
           repeat: Infinity,
           repeatType: "loop" as const,
-          repeatDelay: text.length * 0.05,
-          delay: (charIndex * duration) / text.length,
+          repeatDelay: (text?.length ?? 0) * 0.05,
+          delay: (charIndex * duration) / (text?.length || 1),
           ease: "easeInOut",
         },
       },
@@ -50,7 +50,7 @@ export function ShimmeringText({
         },
       },
     }),
-    [duration, text.length]
+    [duration, text?.length]
   )
 
   return (
