@@ -114,7 +114,7 @@ export function ProjectPreview({ project }: { project: Project }) {
 
         <div className="screen-line-top h-px max-lg:hidden mt-2" />
 
-        <div className="flex h-[768px] flex-none max-lg:hidden w-full mt-2">
+        <div className="flex h-[500px] flex-none max-lg:hidden w-full mt-2">
           <div className="relative w-full">
             <div className="absolute inset-0 right-2 rounded-xl bg-black/0.75 bg-[radial-gradient(var(--pattern-foreground)_1px,transparent_0)] bg-size-[10px_10px] bg-center [--pattern-foreground:var(--color-zinc-950)]/5 dark:bg-white/0.75 dark:[--pattern-foreground:var(--color-white)]/5" />
             
@@ -172,7 +172,7 @@ export function ProjectPreview({ project }: { project: Project }) {
             </div>
           </div>
           <div className="screen-line-top h-px" />
-          <div className="relative overflow-hidden rounded-xl border h-[600px]">
+          <div className="relative overflow-hidden rounded-xl border h-[400px]">
             {project.link !== "#" ? (
               <iframe
                 key={iframeKey}

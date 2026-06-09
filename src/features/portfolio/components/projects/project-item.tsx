@@ -72,26 +72,28 @@ export function ProjectItem({
   return (
     <Sheet onOpenChange={setIsOpen}>
       <Collapsible className={className} defaultOpen={project.isExpanded}>
-        <div className="flex items-center hover:bg-accent-muted group/item">
-          {project.logo ? (
-            <Image
-              src={project.logo}
-              alt={project.title}
-              width={32}
-              height={32}
-              quality={100}
-              className="mx-4 flex size-6 shrink-0 select-none dark:grayscale"
-              unoptimized
-              aria-hidden="true"
-            />
-          ) : (
-            <div
-              className="mx-4 flex size-6 shrink-0 items-center justify-center rounded-lg border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-edge ring-offset-1 ring-offset-background select-none"
-              aria-hidden="true"
-            >
-              <BoxIcon className="size-4" />
-            </div>
-          )}
+        <div className="flex items-start hover:bg-accent-muted group/item">
+          <div className="py-4 shrink-0 flex items-center justify-center">
+            {project.logo ? (
+              <Image
+                src={project.logo}
+                alt={project.title}
+                width={32}
+                height={32}
+                quality={100}
+                className="mx-4 flex size-6 select-none dark:grayscale"
+                unoptimized
+                aria-hidden="true"
+              />
+            ) : (
+              <div
+                className="mx-4 flex size-6 items-center justify-center rounded-lg border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-edge ring-offset-1 ring-offset-background select-none"
+                aria-hidden="true"
+              >
+                <BoxIcon className="size-4" />
+              </div>
+            )}
+          </div>
 
           <div className="flex-1 border-l border-dashed border-edge">
             <div className="flex w-full items-center">
@@ -171,28 +173,28 @@ export function ProjectItem({
                 </CollapsibleTrigger>
               </div>
             </div>
+
+            <CollapsibleContent className="overflow-hidden">
+              <div className="space-y-4 border-t border-edge p-4">
+                {project.description && (
+                  <ProseMono>
+                    <Markdown>{project.description}</Markdown>
+                  </ProseMono>
+                )}
+
+                {project.skills.length > 0 && (
+                  <ul className="flex flex-wrap gap-1.5">
+                    {project.skills.map((skill, index) => (
+                      <li key={index} className="flex">
+                        <Tag>{skill}</Tag>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </CollapsibleContent>
           </div>
         </div>
-
-        <CollapsibleContent className="overflow-hidden">
-          <div className="space-y-4 border-t border-edge p-4">
-            {project.description && (
-              <ProseMono>
-                <Markdown>{project.description}</Markdown>
-              </ProseMono>
-            )}
-
-            {project.skills.length > 0 && (
-              <ul className="flex flex-wrap gap-1.5">
-                {project.skills.map((skill, index) => (
-                  <li key={index} className="flex">
-                    <Tag>{skill}</Tag>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </CollapsibleContent>
       </Collapsible>
 
       <SheetContent className="sm:max-w-[80vw] md:max-w-[75vw] lg:max-w-[70vw]">
