@@ -151,4 +151,18 @@ export const TECH_STACK: TechStack[] = [
     lightIconUrl: "https://assets.chanhdai.com/images/tech-stack-icons/chatgpt-light.svg",
     darkIconUrl: "https://assets.chanhdai.com/images/tech-stack-icons/chatgpt-dark.svg",
   },
+  {
+    key: "antigravity",
+    title: "Antigravity",
+    href: "https://github.com/google-deepmind",
+    categories: ["Tools", "AI"],
+    iconUrl: "https://cdn.simpleicons.org/google/4285F4",
+  },
+  {
+    key: "antigravity-cli",
+    title: "Antigravity CLI",
+    href: "https://github.com/google-deepmind",
+    categories: ["Tools", "AI"],
+    iconUrl: "https://cdn.simpleicons.org/google/4285F4",
+  },
 ]
