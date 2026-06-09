@@ -29,6 +29,8 @@ export const PROJECTS: Project[] = [
       start: "10.2025",
     },
     link: "#",
+    repo: "https://github.com/siby369/Text-to-Image-using-GANs",
+    previewImage: "/projects/gan-preview.jpg",
     skills: [
       "Python",
       "GANs (DCGAN/CGAN)",

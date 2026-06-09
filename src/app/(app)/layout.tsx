@@ -10,7 +10,7 @@ const ScrollToTop = dynamic(() =>
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col min-h-screen overflow-x-hidden">
+    <div className="flex flex-col min-h-screen overflow-x-clip">
       <SiteHeader />
       <PeekSidebarWrapper>
         {children}

@@ -12,14 +12,18 @@ export type Project = {
     /** End date; leave undefined for "Present". */
     end?: string
   }
-  /** Public URL (site, repository, demo, or video). */
+  /** Public URL (site, demo, or video) for the iframe preview. Use "#" if none. */
   link: string
+  /** Source code repository URL (e.g. GitHub). */
+  repo?: string
   /** Tags/technologies for chips or filtering. */
   skills: string[]
   /** Optional rich description; Markdown and line breaks supported. */
   description?: string
   /** Logo image URL (absolute or path under /public). */
   logo?: string
+  /** Optional image to use as the preview instead of an iframe. */
+  previewImage?: string
   /** Whether the project card is expanded by default in the UI. */
   isExpanded?: boolean
 }
