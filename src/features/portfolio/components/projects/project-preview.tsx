@@ -165,7 +165,17 @@ export function ProjectPreview({ project }: { project: Project }) {
         <div className="flex flex-col gap-2 lg:hidden mt-2">
           <div className="flex items-center gap-2 px-2">
             <div className="line-clamp-2 text-sm font-medium text-balance">
-              {project.title}
+              {project.link !== "#" ? (
+                <a href={projectUrl} target="_blank" rel="noopener" className="hover:underline inline-flex items-center gap-1">
+                  {project.title} <ExternalLinkIcon className="size-3 text-muted-foreground" />
+                </a>
+              ) : project.repo ? (
+                <a href={project.repo} target="_blank" rel="noopener" className="hover:underline inline-flex items-center gap-1">
+                  {project.title} <ExternalLinkIcon className="size-3 text-muted-foreground" />
+                </a>
+              ) : (
+                project.title
+              )}
             </div>
             <div className="ml-auto shrink-0 font-mono text-sm text-muted-foreground">
               {project.id}
