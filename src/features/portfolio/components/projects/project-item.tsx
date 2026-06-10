@@ -9,10 +9,11 @@ import {
   RotateCwIcon,
   SmartphoneIcon,
   TabletIcon,
-  MonitorIcon
+  MonitorIcon,
+  XIcon
 } from "lucide-react"
 import Image from "next/image"
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 
 import {
   Collapsible,
@@ -44,9 +45,11 @@ import { cn } from "@/lib/utils"
 export function ProjectItem({
   className,
   project,
+  index,
 }: {
   className?: string
   project: Project
+  index?: number
 }) {
   const { start, end } = project.period
   const isOngoing = !end
@@ -54,6 +57,43 @@ export function ProjectItem({
   const { setIsOpen } = usePeekSidebar()
   const [device, setDevice] = useState<string>("desktop")
   const iframeRef = useRef<HTMLIFrameElement>(null)
+
+  const [showTooltip, setShowTooltip] = useState(false)
+
+  useEffect(() => {
+    if (index !== 0) return
+
+    const hasSeen = localStorage.getItem("has-seen-preview-tip")
+    if (hasSeen) return
+
+    let scrollTriggered = false
+    let timerTriggered = false
+
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        scrollTriggered = true
+        checkAndShow()
+      }
+    }
+
+    const timer = setTimeout(() => {
+      timerTriggered = true
+      checkAndShow()
+    }, 5000)
+
+    const checkAndShow = () => {
+      if (scrollTriggered && timerTriggered) {
+        setShowTooltip(true)
+        window.removeEventListener("scroll", handleScroll)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+      clearTimeout(timer)
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [index])
 
   const projectUrl = addQueryParams(project.link, UTM_PARAMS)
 
@@ -129,25 +169,66 @@ export function ProjectItem({
               </CollapsibleTrigger>
 
               <div className="flex items-center gap-1 pr-4">
-                <Tooltip>
-                  <TooltipTrigger
-                    render={
-                      <SheetTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="icon-sm"
-                          className="text-muted-foreground hover:text-foreground transition-opacity"
+                <div className="relative">
+                  <Tooltip>
+                    <TooltipTrigger
+                      render={
+                        <SheetTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="icon-sm"
+                            className={cn(
+                              "text-muted-foreground hover:text-foreground transition-opacity relative z-10",
+                              showTooltip && "ring-2 ring-primary ring-offset-2 ring-offset-background"
+                            )}
+                            onClick={() => {
+                              setShowTooltip(false)
+                              localStorage.setItem("has-seen-preview-tip", "true")
+                            }}
+                          >
+                            <Maximize2Icon className="size-4" />
+                            <span className="sr-only">Open Project Preview</span>
+                            
+                            {showTooltip && (
+                              <span className="absolute -inset-1.5 flex rounded-md">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-md bg-primary/30 opacity-75"></span>
+                              </span>
+                            )}
+                          </Button>
+                        </SheetTrigger>
+                      }
+                    />
+                    <TooltipContent>
+                      <p>Open Project Preview</p>
+                    </TooltipContent>
+                  </Tooltip>
+
+                  {showTooltip && (
+                    <div className="absolute right-0 top-full mt-2 z-50 w-60 p-3 rounded-xl border bg-background/95 backdrop-blur-md text-foreground shadow-2xl animate-in fade-in-0 slide-in-from-top-2 duration-300">
+                      <div className="absolute -top-1.5 right-3 w-3 h-3 bg-background border-t border-l rotate-45"></div>
+                      <div className="flex items-start justify-between gap-3 relative">
+                        <div className="space-y-1">
+                          <p className="text-xs font-semibold text-primary flex items-center gap-1">
+                            <span>✨</span> Live Preview Available
+                          </p>
+                          <p className="text-[11px] text-muted-foreground leading-relaxed">
+                            Click here to interact with the live website directly in your browser.
+                          </p>
+                        </div>
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            setShowTooltip(false)
+                            localStorage.setItem("has-seen-preview-tip", "true")
+                          }}
+                          className="text-muted-foreground hover:text-foreground shrink-0 rounded p-0.5 hover:bg-muted"
                         >
-                          <Maximize2Icon className="size-4" />
-                          <span className="sr-only">Open Project Preview</span>
-                        </Button>
-                      </SheetTrigger>
-                    }
-                  />
-                  <TooltipContent>
-                    <p>Open Project Preview</p>
-                  </TooltipContent>
-                </Tooltip>
+                          <XIcon className="size-3" />
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
 
                 <Tooltip>
                   <TooltipTrigger

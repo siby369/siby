@@ -20,7 +20,7 @@ export function CollapsibleList<T>({
   max?: number
 
   keyExtractor?: (item: T) => string
-  renderItem: (item: T) => React.ReactNode
+  renderItem: (item: T, index: number) => React.ReactNode
 }) {
   return (
     <Collapsible className="group/collapsible">
@@ -29,7 +29,7 @@ export function CollapsibleList<T>({
           key={typeof keyExtractor === "function" ? keyExtractor(award) : index}
           className="border-b border-edge"
         >
-          {renderItem(award)}
+          {renderItem(award, index)}
         </Slot.Root>
       ))}
 
@@ -43,7 +43,7 @@ export function CollapsibleList<T>({
             }
             className="border-b border-edge"
           >
-            {renderItem(award)}
+            {renderItem(award, max + index)}
           </Slot.Root>
         ))}
       </CollapsibleContent>
