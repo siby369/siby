@@ -197,7 +197,7 @@ export function ProjectItem({
         </div>
       </Collapsible>
 
-      <SheetContent className="sm:max-w-[80vw] md:max-w-[75vw] lg:max-w-[70vw]">
+      <SheetContent className="w-full !max-w-[90vw] sm:!max-w-[80vw] md:!max-w-[75vw] lg:!max-w-[70vw]">
         <div className="flex h-full flex-col">
           <div className="flex items-center justify-between border-b px-6 py-3">
             <div className="flex items-center gap-3">
