@@ -1,18 +1,60 @@
+"use client"
+
 import Link from "next/link"
-import React from "react"
+import React, { useState, useEffect } from "react"
 
 import { cn } from "@/lib/utils"
-import type { NavItem } from "@/types/nav"
+import type { NavItem as NavItemType } from "@/types/nav"
 
 export function Nav({
   items,
   activeId,
   className,
 }: {
-  items: NavItem[]
+  items: NavItemType[]
   activeId?: string
   className?: string
 }) {
+  const [showProjectsPulse, setShowProjectsPulse] = useState(false)
+
+  useEffect(() => {
+    if (activeId && activeId.startsWith("/projects")) {
+      localStorage.setItem("has-seen-projects-nav-tip", "true")
+      return
+    }
+
+    const hasSeen = localStorage.getItem("has-seen-projects-nav-tip")
+    if (hasSeen) return
+
+    let scrollTriggered = false
+    let timerTriggered = false
+
+    const handleScroll = () => {
+      if (window.scrollY > 80) {
+        scrollTriggered = true
+        checkAndShow()
+      }
+    }
+
+    const timer = setTimeout(() => {
+      timerTriggered = true
+      checkAndShow()
+    }, 5000)
+
+    const checkAndShow = () => {
+      if (scrollTriggered && timerTriggered) {
+        setShowProjectsPulse(true)
+        window.removeEventListener("scroll", handleScroll)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+      clearTimeout(timer)
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [activeId])
+
   return (
     <nav
       data-active-id={activeId}
@@ -25,9 +67,27 @@ export function Nav({
             ? ["/", "/index"].includes(activeId || "")
             : activeId?.startsWith(href))
 
+        const isProjects = title.toLowerCase() === "projects"
+
         return (
-          <NavItem key={href} href={href} active={active}>
-            {title}
+          <NavItem 
+            key={href} 
+            href={href} 
+            active={active}
+            onClick={isProjects ? () => {
+              setShowProjectsPulse(false)
+              localStorage.setItem("has-seen-projects-nav-tip", "true")
+            } : undefined}
+          >
+            <span className="inline-flex items-center gap-1">
+              {title}
+              {isProjects && showProjectsPulse && (
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                </span>
+              )}
+            </span>
           </NavItem>
         )
       })}
