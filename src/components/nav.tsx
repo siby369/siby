@@ -19,11 +19,11 @@ export function Nav({
 
   useEffect(() => {
     if (activeId && activeId.startsWith("/projects")) {
-      localStorage.setItem("has-seen-projects-nav-tip", "true")
+      sessionStorage.setItem("has-seen-projects-nav-tip", "true")
       return
     }
 
-    const hasSeen = localStorage.getItem("has-seen-projects-nav-tip")
+    const hasSeen = sessionStorage.getItem("has-seen-projects-nav-tip")
     if (hasSeen) return
 
     let scrollTriggered = false
@@ -76,7 +76,7 @@ export function Nav({
             active={active}
             onClick={isProjects ? () => {
               setShowProjectsPulse(false)
-              localStorage.setItem("has-seen-projects-nav-tip", "true")
+              sessionStorage.setItem("has-seen-projects-nav-tip", "true")
             } : undefined}
           >
             <span className="inline-flex items-center gap-1">

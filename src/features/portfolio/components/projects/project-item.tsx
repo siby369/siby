@@ -63,7 +63,7 @@ export function ProjectItem({
   useEffect(() => {
     if (index !== 0) return
 
-    const hasSeen = localStorage.getItem("has-seen-preview-tip")
+    const hasSeen = sessionStorage.getItem("has-seen-preview-tip")
     if (hasSeen) return
 
     let scrollTriggered = false
@@ -183,7 +183,7 @@ export function ProjectItem({
                             )}
                             onClick={() => {
                               setShowTooltip(false)
-                              localStorage.setItem("has-seen-preview-tip", "true")
+                              sessionStorage.setItem("has-seen-preview-tip", "true")
                             }}
                           >
                             <Maximize2Icon className="size-4" />
@@ -219,7 +219,7 @@ export function ProjectItem({
                           onClick={(e) => {
                             e.stopPropagation()
                             setShowTooltip(false)
-                            localStorage.setItem("has-seen-preview-tip", "true")
+                            sessionStorage.setItem("has-seen-preview-tip", "true")
                           }}
                           className="text-muted-foreground hover:text-foreground shrink-0 rounded p-0.5 hover:bg-muted"
                         >
